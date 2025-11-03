@@ -1,0 +1,61 @@
+name: pyutrecht-telemetry-demo
+
+topology:
+  nodes:
+    # Spine switches
+    spine1:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      mgmt-ipv4: 172.20.20.11
+      startup-config: configs/spine1.cfg
+      ports:
+        - 6030:6030  # gNMI
+        - 50051:50051  # gRPC
+
+    spine2:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      mgmt-ipv4: 172.20.20.12
+      startup-config: configs/spine2.cfg
+
+    # Leaf switches
+    leaf1:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      mgmt-ipv4: 172.20.20.21
+      startup-config: configs/leaf1.cfg
+
+    leaf2:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      mgmt-ipv4: 172.20.20.22
+      startup-config: configs/leaf2.cfg
+
+    # Traffic generator (Alpine Linux)
+    traffic-gen:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 172.20.20.100
+      exec:
+        - ip addr add 10.1.1.100/24 dev eth1
+        - ip route add 10.1.2.0/24 via 10.1.1.1
+
+    # Host
+    host1:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 172.20.20.101
+      exec:
+        - ip addr add 10.1.2.100/24 dev eth1
+        - ip route add 10.1.1.0/24 via 10.1.2.1
+
+  links:
+    # Spine to Leaf connections
+    - endpoints: ["spine1:eth1", "leaf1:eth1"]
+    - endpoints: ["spine1:eth2", "leaf2:eth1"]
+    - endpoints: ["spine2:eth1", "leaf1:eth2"]
+    - endpoints: ["spine2:eth2", "leaf2:eth2"]
+
+    # Host connections
+    - endpoints: ["leaf1:eth3", "traffic-gen:eth1"]
+    - endpoints: ["leaf2:eth3", "host1:eth1"]

@@ -1,0 +1,7 @@
+# PyUtrecht Streaming Telemetry Demo Requirements
+# Python 3.8+ required
+pygnmi>=0.8.10
+grpcio>=1.51.0
+grpcio-tools>=1.51.0
+protobuf>=4.21.0
+colorama>=0.4.6
