@@ -5,7 +5,7 @@ topology:
     # Spine switches
     spine1:
       kind: arista_ceos
-      image: ceos:4.32.0F
+      image: ceos:latest
       mgmt-ipv4: 172.20.20.11
       startup-config: configs/spine1.cfg
       ports:
@@ -14,20 +14,20 @@ topology:
 
     spine2:
       kind: arista_ceos
-      image: ceos:4.32.0F
+      image: ceos:latest
       mgmt-ipv4: 172.20.20.12
       startup-config: configs/spine2.cfg
 
     # Leaf switches
     leaf1:
       kind: arista_ceos
-      image: ceos:4.32.0F
+      image: ceos:latest
       mgmt-ipv4: 172.20.20.21
       startup-config: configs/leaf1.cfg
 
     leaf2:
       kind: arista_ceos
-      image: ceos:4.32.0F
+      image: ceos:latest
       mgmt-ipv4: 172.20.20.22
       startup-config: configs/leaf2.cfg
 
@@ -55,6 +55,7 @@ topology:
     - endpoints: ["spine1:eth2", "leaf2:eth1"]
     - endpoints: ["spine2:eth1", "leaf1:eth2"]
     - endpoints: ["spine2:eth2", "leaf2:eth2"]
+    - endpoints: ["spine1:eth3", "leaf1:eth4"]
 
     # Host connections
     - endpoints: ["leaf1:eth3", "traffic-gen:eth1"]
