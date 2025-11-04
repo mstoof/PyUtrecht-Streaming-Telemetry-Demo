@@ -1,0 +1,157 @@
+<svg viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define styles -->
+  <defs>
+    <style>
+      .device { fill: #4A90E2; stroke: #2E5C8A; stroke-width: 2; }
+      .host { fill: #7ED321; stroke: #5A9E17; stroke-width: 2; }
+      .client { fill: #F5A623; stroke: #C17D11; stroke-width: 2; }
+      .link { stroke: #333; stroke-width: 2; }
+      .mgmt-link { stroke: #E91E63; stroke-width: 1.5; stroke-dasharray: 5,5; }
+      .text { font-family: Arial, sans-serif; font-size: 14px; fill: #333; }
+      .text-small { font-family: Arial, sans-serif; font-size: 11px; fill: #666; }
+      .text-white { font-family: Arial, sans-serif; font-size: 12px; fill: white; font-weight: bold; }
+      .title { font-family: Arial, sans-serif; font-size: 20px; fill: #2E5C8A; font-weight: bold; }
+      .subnet { fill: none; stroke: #999; stroke-width: 1; stroke-dasharray: 3,3; }
+    </style>
+    
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">PyUtrecht Telemetry Demo - Network Topology</text>
+  
+  <!-- Management Network Cloud -->
+  <ellipse cx="400" cy="100" rx="350" ry="40" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
+  <text x="400" y="85" text-anchor="middle" class="text">Management Network</text>
+  <text x="400" y="105" text-anchor="middle" class="text-small">172.20.20.0/24</text>
+  
+  <!-- Spine Switches -->
+  <g id="spine1">
+    <rect x="180" y="170" width="120" height="80" rx="5" class="device"/>
+    <text x="240" y="195" text-anchor="middle" class="text-white">Spine1</text>
+    <text x="240" y="215" text-anchor="middle" class="text-white">172.20.20.11</text>
+    <text x="240" y="230" text-anchor="middle" class="text-white">AS 65000</text>
+    <text x="240" y="245" text-anchor="middle" class="text-small" fill="#FFE082">gNMI :6030</text>
+  </g>
+  
+  <g id="spine2">
+    <rect x="500" y="170" width="120" height="80" rx="5" class="device"/>
+    <text x="560" y="195" text-anchor="middle" class="text-white">Spine2</text>
+    <text x="560" y="215" text-anchor="middle" class="text-white">172.20.20.12</text>
+    <text x="560" y="230" text-anchor="middle" class="text-white">AS 65000</text>
+    <text x="560" y="245" text-anchor="middle" class="text-small" fill="#FFE082">gNMI :6030</text>
+  </g>
+  
+  <!-- Leaf Switches -->
+  <g id="leaf1">
+    <rect x="100" y="380" width="120" height="80" rx="5" class="device"/>
+    <text x="160" y="405" text-anchor="middle" class="text-white">Leaf1</text>
+    <text x="160" y="425" text-anchor="middle" class="text-white">172.20.20.21</text>
+    <text x="160" y="440" text-anchor="middle" class="text-white">AS 65001</text>
+    <text x="160" y="455" text-anchor="middle" class="text-small" fill="#FFE082">gNMI :6030</text>
+  </g>
+  
+  <g id="leaf2">
+    <rect x="580" y="380" width="120" height="80" rx="5" class="device"/>
+    <text x="640" y="405" text-anchor="middle" class="text-white">Leaf2</text>
+    <text x="640" y="425" text-anchor="middle" class="text-white">172.20.20.22</text>
+    <text x="640" y="440" text-anchor="middle" class="text-white">AS 65002</text>
+    <text x="640" y="455" text-anchor="middle" class="text-small" fill="#FFE082">gNMI :6030</text>
+  </g>
+  
+  <!-- End Hosts -->
+  <g id="traffic-gen">
+    <rect x="100" y="560" width="120" height="60" rx="5" class="host"/>
+    <text x="160" y="580" text-anchor="middle" class="text-white">Traffic-Gen</text>
+    <text x="160" y="600" text-anchor="middle" class="text-white">10.1.1.100</text>
+    <text x="160" y="615" text-anchor="middle" class="text-small" fill="#333">(Alpine)</text>
+  </g>
+  
+  <g id="host1">
+    <rect x="580" y="560" width="120" height="60" rx="5" class="host"/>
+    <text x="640" y="580" text-anchor="middle" class="text-white">Host1</text>
+    <text x="640" y="600" text-anchor="middle" class="text-white">10.1.2.100</text>
+    <text x="640" y="615" text-anchor="middle" class="text-small" fill="#333">(Alpine)</text>
+  </g>
+  
+  <!-- Your PC / Python Client -->
+  <g id="client">
+    <rect x="340" y="170" width="120" height="80" rx="5" class="client"/>
+    <text x="400" y="195" text-anchor="middle" class="text-white">Your PC</text>
+    <text x="400" y="215" text-anchor="middle" class="text-white">Python Client</text>
+    <text x="400" y="235" text-anchor="middle" class="text-small" fill="#333">PyGNMI</text>
+  </g>
+  
+  <!-- Management Links (dashed red) -->
+  <line x1="240" y1="140" x2="240" y2="170" class="mgmt-link"/>
+  <line x1="560" y1="140" x2="560" y2="170" class="mgmt-link"/>
+  <line x1="400" y1="140" x2="400" y2="170" class="mgmt-link"/>
+  <line x1="160" y1="140" x2="160" y2="380" class="mgmt-link"/>
+  <line x1="640" y1="140" x2="640" y2="380" class="mgmt-link"/>
+  
+  <!-- Data Links between Spines and Leafs -->
+  <!-- Spine1 to Leaf1 -->
+  <line x1="220" y1="250" x2="160" y2="380" class="link"/>
+  <text x="180" y="310" class="text-small">10.0.1.0/31</text>
+  
+  <!-- Spine1 to Leaf2 -->
+  <line x1="280" y1="250" x2="620" y2="380" class="link"/>
+  <text x="450" y="310" class="text-small">10.0.1.2/31</text>
+  
+  <!-- Spine2 to Leaf1 -->
+  <line x1="520" y1="250" x2="200" y2="380" class="link"/>
+  <text x="350" y="310" class="text-small">10.0.2.0/31</text>
+  
+  <!-- Spine2 to Leaf2 -->
+  <line x1="580" y1="250" x2="640" y2="380" class="link"/>
+  <text x="620" y="310" class="text-small">10.0.2.2/31</text>
+  
+  <!-- Links from Leafs to Hosts -->
+  <line x1="160" y1="460" x2="160" y2="560" class="link"/>
+  <text x="180" y="510" class="text-small">10.1.1.0/24</text>
+  
+  <line x1="640" y1="460" x2="640" y2="560" class="link"/>
+  <text x="660" y="510" class="text-small">10.1.2.0/24</text>
+  
+  <!-- Traffic flow between hosts -->
+  <line x1="220" y1="590" x2="580" y2="590" class="link" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  <text x="400" y="580" text-anchor="middle" class="text-small">Traffic Flow</text>
+  
+  <!-- gNMI Connection indicators -->
+  <circle cx="400" cy="160" r="3" fill="#E91E63"/>
+  <line x1="400" y1="160" x2="235" y2="175" stroke="#E91E63" stroke-width="2" stroke-dasharray="2,2"/>
+  <line x1="400" y1="160" x2="565" y2="175" stroke="#E91E63" stroke-width="2" stroke-dasharray="2,2"/>
+  
+  <!-- Legend -->
+  <g id="legend" transform="translate(20, 640)">
+    <text x="0" y="0" class="text" font-weight="bold">Legend:</text>
+    
+    <line x1="0" y1="10" x2="30" y2="10" class="link"/>
+    <text x="35" y="15" class="text-small">Data Plane</text>
+    
+    <line x1="120" y1="10" x2="150" y2="10" class="mgmt-link"/>
+    <text x="155" y="15" class="text-small">Management</text>
+    
+    <line x1="250" y1="10" x2="280" y2="10" stroke="#E91E63" stroke-width="2" stroke-dasharray="2,2"/>
+    <text x="285" y="15" class="text-small">gNMI Stream</text>
+    
+    <rect x="400" y="2" width="20" height="15" class="device"/>
+    <text x="425" y="15" class="text-small">Switch</text>
+    
+    <rect x="500" y="2" width="20" height="15" class="host"/>
+    <text x="525" y="15" class="text-small">Host</text>
+    
+    <rect x="600" y="2" width="20" height="15" class="client"/>
+    <text x="625" y="15" class="text-small">Client</text>
+  </g>
+  
+  <!-- Notes -->
+  <g id="notes" transform="translate(20, 20)">
+    <text x="0" y="0" class="text-small" font-style="italic">• All switches run Arista cEOS</text>
+    <text x="0" y="15" class="text-small" font-style="italic">• gNMI enabled on port 6030</text>
+    <text x="0" y="30" class="text-small" font-style="italic">• BGP for routing between switches</text>
+  </g>
+</svg>
