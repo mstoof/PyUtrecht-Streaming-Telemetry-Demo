@@ -124,7 +124,7 @@ class TelemetryDemo:
                             errors = value.get('in-errors', 0) + value.get('out-errors', 0)
                             print(f"  Errors:     {errors}")
             
-            print(f"\n{Colors.YELLOW}⏱️  To monitor continuously, we'd need to poll every N seconds{Colors.END}")
+            print(f"\n{Colors.YELLOW}  To monitor continuously, we'd need to poll every N seconds{Colors.END}")
             print(f"{Colors.YELLOW}   (wasting resources when nothing changes!){Colors.END}")
             
             input(f"\n{Colors.BLUE}Press Enter to see the better way...{Colors.END}")
@@ -241,7 +241,7 @@ class TelemetryDemo:
         print(f"  • Operational status (up/down)")
         print(f"  • Admin status (enabled/disabled)\n")
         
-        print(f"{Colors.YELLOW}💡 In another terminal, try: docker exec -it clab-pyutrecht-telemetry-demo-spine1 Cli{Colors.END}")
+        print(f"{Colors.YELLOW} In another terminal, try: docker exec -it clab-pyutrecht-telemetry-demo-spine1 Cli{Colors.END}")
         print(f"{Colors.YELLOW}   Then: enable → conf t → interface ethernet 3 → shutdown{Colors.END}\n")
         
         print(f"{Colors.CYAN}{'─'*70}{Colors.END}")
@@ -268,7 +268,7 @@ class TelemetryDemo:
                 update_count += 1
                 timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
                 
-                print(f"\n{Colors.BOLD}{Colors.RED}🚨 CHANGE DETECTED!{Colors.END}")
+                print(f"\n{Colors.BOLD}{Colors.RED}CHANGE DETECTED!{Colors.END}")
                 print(f"{Colors.BOLD}[{timestamp}] Update #{update_count}{Colors.END}")
                 
                 if 'update' in response:
