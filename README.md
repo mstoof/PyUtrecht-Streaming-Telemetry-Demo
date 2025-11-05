@@ -191,8 +191,8 @@ Dit project is gelicenseerd onder de MIT License - zie [LICENSE](LICENSE) voor d
 
 **Presenter**: Maurice Stoof  
 **Email**: maurice@mcstoof.com  
-**LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)  
-**GitHub**: [@yourusername](https://github.com/yourusername)
+**LinkedIn**: [@mauricestoof](https://www.linkedin.com/in/maurice-stoof/)  
+**GitHub**: [@mstoof](https://github.com/mstoof)
 
 
 ## Real-world Toepassingen
